@@ -490,7 +490,8 @@ The app comes with the default package name `com.my.webviewapplication.mobile`. 
 7. Click **Refactor**
 8. Repeat for each package segment:
    - Rename `webviewapplication` to `yourcompany`
-   - Rename `my` to `com` (or your domain)
+   - Rename `my` to whatever you want
+   - You can also delete unused package names just remember to move all files
 
 **Alternative Method (Rename Multiple Segments at Once):**
 
