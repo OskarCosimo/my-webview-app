@@ -1254,6 +1254,6 @@ If you encounter any issues or have questions:
 
 **Made with ❤️ for the Android community**
 
-[⬆ Back to Top](#my-webview-app-for-android)
+[⬆ Back to Top](#my-webview-app-mwa-for-android)
 
 </div>
