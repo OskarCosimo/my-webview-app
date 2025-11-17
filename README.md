@@ -967,6 +967,7 @@ navigator.geolocation.getCurrentPosition(
 2. Set to `"auto"` for auto-rotation
 3. Verify device auto-rotate is enabled in system settings
 4. Rebuild app after changing Config.java
+5. Please note: it is reccomended by Google Play to leave it as "none" and let choose the orientation to the user
 
 ---
 
