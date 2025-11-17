@@ -465,16 +465,7 @@ To use Firebase push notifications, you need to configure Firebase for your app.
    ```
 3. **Do NOT commit this file to version control** (it contains API keys)
 
-#### Step 4: Verify Firebase Configuration
-
-1. Open `app/build.gradle` and ensure this line exists:
-   ```gradle
-   apply plugin: 'com.google.gms.google-services'
-   ```
-
-2. Sync Gradle and rebuild the project
-
-#### Step 5: Test Push Notifications
+#### Step 4: Test Push Notifications
 
 1. Build and run the app on a device
 2. Go to Firebase Console → **Cloud Messaging**
