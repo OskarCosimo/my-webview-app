@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    compileSdk 36
+    namespace "com.my.webviewapplication.mobile"
+    
+    defaultConfig {
+        applicationId 'com.my.webviewapplication.mobile'
+        minSdk 23
+        targetSdk 36
+        versionCode 100
+        versionName "1.0.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    
+    buildTypes {
+        debug {
+            debuggable true
+            buildConfigField "Boolean", "IS_DEBUG_MODE", 'true'
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            buildConfigField "Boolean", "IS_DEBUG_MODE", 'false'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    
+    // AndroidX Core
+    implementation 'androidx.core:core:1.17.0'
+    implementation 'androidx.activity:activity:1.11.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'com.google.android.material:material:1.13.0'
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:34.6.0')
+    implementation 'com.google.firebase:firebase-analytics' // Firebase Analytics
+    implementation 'com.google.firebase:firebase-messaging' // Firebase Push Messaging
+    implementation 'com.google.firebase:firebase-inappmessaging-display' // Firebase In-App Messaging
+
+    // QR Code Scanner (ZXing)
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+    
+    // WebView & Browser
+    implementation 'androidx.browser:browser:1.9.0'
+    
+    // Splash Screen
+    implementation 'androidx.core:core-splashscreen:1.2.0'
+    
+    // GIF Support
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.29'
+    
+    // Network & Connectivity
+    implementation 'androidx.work:work-runtime:2.11.0'
+    
+    // Lifecycle
+    implementation 'androidx.lifecycle:lifecycle-process:2.9.4'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.9.4'
+    
+    // Gson
+    implementation 'com.google.code.gson:gson:2.13.2'
+    
+    // MultiDex
+    implementation 'androidx.multidex:multidex:2.0.1'
+    
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
+}
