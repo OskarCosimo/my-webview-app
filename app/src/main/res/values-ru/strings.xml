@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">Сканировать QR-код</string>
+    <string name="scan_cancelled">Сканирование отменено</string>
+    <string name="exit_app">Выйти из приложения</string>
+    <string name="exit_app_message">Вы хотите выйти?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="share">Поделиться</string>
+    <string name="no_internet">Нет подключения к интернету</string>
+    <string name="check_connection">Проверьте подключение к сети</string>
+    <string name="channel_description">Получайте важные обновления</string>
+    <string name="camera_permission_required">Для сканирования QR-кодов требуется разрешение на использование камеры</string>
+    <string name="loadingtext">Загрузка...</string>
+    <string name="http_warning_title">Небезопасное соединение</string>
+    <string name="http_warning_message">Этот веб-сайт использует HTTP (небезопасное соединение). Рекомендуется посещать только HTTPS-сайты для вашей безопасности. Хотите продолжить?</string>
+    <string name="http_warning_continue">Продолжить</string>
+    <string name="http_warning_cancel">Отмена</string>
+    <string name="ssl_error_title">SSL-сертификат недействителен</string>
+    <string name="ssl_error_message">SSL-сертификат этого сайта недействителен.</string>
+    <string name="ssl_error_question">Вы хотите продолжить?</string>
+    <string name="dnd_permission_title">Требуется разрешение "Не беспокоить"</string>
+    <string name="dnd_permission_message">Чтобы блокировать уведомления от других приложений, предоставьте разрешение на доступ к функции "Не беспокоить" в настройках.\n\nЭто позволяет приложению включать блокировку уведомлений, когда оно активно.</string>
+    <string name="dnd_permission_open_settings">Открыть настройки</string>
+    <string name="dnd_permission_cancel">Отмена</string>
+    <string name="dnd_enabled">Режим "Не беспокоить" включен - уведомления заблокированы</string>
+    <string name="dnd_disabled">Режим "Не беспокоить" отключен - уведомления восстановлены</string>
+    <string name="dnd_error_enable">Ошибка при включении режима "Не беспокоить"</string>
+    <string name="dnd_error_disable">Ошибка при отключении режима "Не беспокоить"</string>
+    <string name="dnd_error_open_settings">Не удалось открыть настройки</string>
+    <string name="dnd_mode_disabled_config">Режим "Не беспокоить" отключен в конфигурации</string>
+</resources>

@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">扫描二维码</string>
+    <string name="scan_cancelled">扫描已取消</string>
+    <string name="exit_app">退出应用</string>
+    <string name="exit_app_message">你确定要退出吗？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="share">分享</string>
+    <string name="no_internet">无网络连接</string>
+    <string name="check_connection">请检查你的网络连接</string>
+    <string name="channel_description">接收重要更新</string>
+    <string name="camera_permission_required">扫描二维码需要相机权限</string>
+    <string name="loadingtext">加载中...</string>
+    <string name="http_warning_title">不安全的连接</string>
+    <string name="http_warning_message">此网站使用 HTTP（不安全的连接）。为了您的安全，建议仅访问 HTTPS 网站。是否仍要继续？</string>
+    <string name="http_warning_continue">继续</string>
+    <string name="http_warning_cancel">取消</string>
+    <string name="ssl_error_title">SSL 证书无效</string>
+    <string name="ssl_error_message">该网站的 SSL 证书无效。</string>
+    <string name="ssl_error_question">您仍要继续吗？</string>
+    <string name="dnd_permission_title">需要“请勿打扰”权限</string>
+    <string name="dnd_permission_message">要阻止其他应用的通知，请在设置中授予“请勿打扰”访问权限。\n\n这允许应用在激活时启用通知阻止。</string>
+    <string name="dnd_permission_open_settings">打开设置</string>
+    <string name="dnd_permission_cancel">取消</string>
+    <string name="dnd_enabled">请勿打扰已启用 - 通知已阻止</string>
+    <string name="dnd_disabled">请勿打扰已禁用 - 通知已恢复</string>
+    <string name="dnd_error_enable">启用请勿打扰时出错</string>
+    <string name="dnd_error_disable">禁用请勿打扰时出错</string>
+    <string name="dnd_error_open_settings">无法打开设置</string>
+    <string name="dnd_mode_disabled_config">请勿打扰模式在配置中已禁用</string>
+</resources>

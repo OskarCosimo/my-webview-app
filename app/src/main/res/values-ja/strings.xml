@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">QRコードをスキャン</string>
+    <string name="scan_cancelled">スキャンがキャンセルされました</string>
+    <string name="exit_app">アプリを終了</string>
+    <string name="exit_app_message">終了しますか？</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="share">共有</string>
+    <string name="no_internet">インターネット接続がありません</string>
+    <string name="check_connection">接続を確認してください</string>
+    <string name="channel_description">重要な更新を受け取ります</string>
+    <string name="camera_permission_required">QRコードをスキャンするにはカメラの許可が必要です</string>
+    <string name="loadingtext">読み込み中...</string>
+    <string name="http_warning_title">安全でない接続</string>
+    <string name="http_warning_message">このウェブサイトはHTTP（安全でない接続）を使用しています。安全のため、HTTPSサイトのみを訪問することをお勧めします。それでも続行しますか？</string>
+    <string name="http_warning_continue">続行</string>
+    <string name="http_warning_cancel">キャンセル</string>
+    <string name="ssl_error_title">SSL証明書が無効です</string>
+    <string name="ssl_error_message">このウェブサイトのSSL証明書は無効です。</string>
+    <string name="ssl_error_question">それでも続行しますか？</string>
+    <string name="dnd_permission_title">おやすみモードの許可が必要です</string>
+    <string name="dnd_permission_message">他のアプリからの通知をブロックするには、設定で「おやすみモード」へのアクセス許可を付与してください。\n\nこれにより、アプリがアクティブなときに通知ブロックを有効にできます。</string>
+    <string name="dnd_permission_open_settings">設定を開く</string>
+    <string name="dnd_permission_cancel">キャンセル</string>
+    <string name="dnd_enabled">おやすみモードが有効 - 通知がブロックされました</string>
+    <string name="dnd_disabled">おやすみモードが無効 - 通知が復元されました</string>
+    <string name="dnd_error_enable">おやすみモードの有効化中にエラーが発生しました</string>
+    <string name="dnd_error_disable">おやすみモードの無効化中にエラーが発生しました</string>
+    <string name="dnd_error_open_settings">設定を開けません</string>
+    <string name="dnd_mode_disabled_config">おやすみモードは設定で無効になっています</string>
+</resources>

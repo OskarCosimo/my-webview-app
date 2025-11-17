@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">Scan QR-kode</string>
+    <string name="scan_cancelled">Scanning annulleret</string>
+    <string name="exit_app">Afslut app</string>
+    <string name="exit_app_message">Vil du afslutte?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+    <string name="share">Del</string>
+    <string name="no_internet">Ingen internetforbindelse</string>
+    <string name="check_connection">Kontroller venligst din forbindelse</string>
+    <string name="channel_description">Modtag vigtige opdateringer</string>
+    <string name="camera_permission_required">Kameratilladelse er påkrævet for at scanne QR-koder</string>
+    <string name="loadingtext">Indlæser...</string>
+    <string name="http_warning_title">Usikker forbindelse</string>
+    <string name="http_warning_message">Denne hjemmeside bruger HTTP (usikker forbindelse). Det anbefales kun at besøge HTTPS-hjemmesider for din sikkerhed. Vil du fortsætte alligevel?</string>
+    <string name="http_warning_continue">Fortsæt</string>
+    <string name="http_warning_cancel">Annuller</string>
+    <string name="ssl_error_title">SSL-certifikat ikke gyldigt</string>
+    <string name="ssl_error_message">Webstedets SSL-certifikat er ikke gyldigt.</string>
+    <string name="ssl_error_question">Vil du fortsætte alligevel?</string>
+    <string name="dnd_permission_title">Tilladelse til Forstyr Ikke påkrævet</string>
+    <string name="dnd_permission_message">For at blokere meddelelser fra andre apps skal du give adgang til Forstyr Ikke i Indstillinger.\n\nDette giver appen mulighed for at aktivere meddelelsesblokering, når den er aktiv.</string>
+    <string name="dnd_permission_open_settings">Åbn indstillinger</string>
+    <string name="dnd_permission_cancel">Annuller</string>
+    <string name="dnd_enabled">Forstyr Ikke aktiveret - meddelelser blokeret</string>
+    <string name="dnd_disabled">Forstyr Ikke deaktiveret - meddelelser gendannet</string>
+    <string name="dnd_error_enable">Fejl ved aktivering af Forstyr Ikke</string>
+    <string name="dnd_error_disable">Fejl ved deaktivering af Forstyr Ikke</string>
+    <string name="dnd_error_open_settings">Kunne ikke åbne indstillinger</string>
+    <string name="dnd_mode_disabled_config">Forstyr Ikke-tilstand er deaktiveret i konfigurationen</string>
+</resources>

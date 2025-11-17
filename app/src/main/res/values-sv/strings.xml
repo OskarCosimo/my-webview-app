@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">Skanna QR-kod</string>
+    <string name="scan_cancelled">Skanning avbruten</string>
+    <string name="exit_app">Avsluta appen</string>
+    <string name="exit_app_message">Vill du avsluta?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+    <string name="share">Dela</string>
+    <string name="no_internet">Ingen internetanslutning</string>
+    <string name="check_connection">Kontrollera din anslutning</string>
+    <string name="channel_description">Ta emot viktiga uppdateringar</string>
+    <string name="camera_permission_required">Kamerabehörighet krävs för att skanna QR-koder</string>
+    <string name="loadingtext">Laddar...</string>
+    <string name="http_warning_title">Osäker anslutning</string>
+    <string name="http_warning_message">Den här webbplatsen använder HTTP (osäker anslutning). Det rekommenderas att endast besöka HTTPS-webbplatser för din säkerhet. Vill du fortsätta ändå?</string>
+    <string name="http_warning_continue">Fortsätt</string>
+    <string name="http_warning_cancel">Avbryt</string>
+    <string name="ssl_error_title">SSL-certifikatet är ogiltigt</string>
+    <string name="ssl_error_message">Webbplatsens SSL-certifikat är inte giltigt.</string>
+    <string name="ssl_error_question">Vill du fortsätta ändå?</string>
+    <string name="dnd_permission_title">Tillstånd för Stör ej krävs</string>
+    <string name="dnd_permission_message">För att blockera meddelanden från andra appar, ge åtkomst till Stör ej i Inställningar.\n\nDetta tillåter appen att aktivera meddelandeblockering när den är aktiv.</string>
+    <string name="dnd_permission_open_settings">Öppna inställningar</string>
+    <string name="dnd_permission_cancel">Avbryt</string>
+    <string name="dnd_enabled">Stör ej aktiverat - meddelanden blockerade</string>
+    <string name="dnd_disabled">Stör ej inaktiverat - meddelanden återställda</string>
+    <string name="dnd_error_enable">Fel vid aktivering av Stör ej</string>
+    <string name="dnd_error_disable">Fel vid inaktivering av Stör ej</string>
+    <string name="dnd_error_open_settings">Kan inte öppna inställningar</string>
+    <string name="dnd_mode_disabled_config">Stör ej-läget är inaktiverat i konfigurationen</string>
+</resources>

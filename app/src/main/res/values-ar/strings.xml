@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">مسح رمز الاستجابة السريعة</string>
+    <string name="scan_cancelled">تم إلغاء المسح</string>
+    <string name="exit_app">الخروج من التطبيق</string>
+    <string name="exit_app_message">هل تريد الخروج؟</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="share">مشاركة</string>
+    <string name="no_internet">لا يوجد اتصال بالإنترنت</string>
+    <string name="check_connection">يرجى التحقق من الاتصال</string>
+    <string name="channel_description">استقبل التحديثات الهامة</string>
+    <string name="camera_permission_required">مطلوب إذن الكاميرا لمسح رموز QR</string>
+    <string name="loadingtext">جارٍ التحميل...</string>
+    <string name="http_warning_title">اتصال غير آمن</string>
+    <string name="http_warning_message">يستخدم هذا الموقع بروتوكول HTTP (اتصال غير آمن). يُوصى بزيارة مواقع HTTPS فقط لضمان أمانك. هل ترغب بالمتابعة على أي حال؟</string>
+    <string name="http_warning_continue">متابعة</string>
+    <string name="http_warning_cancel">إلغاء</string>
+    <string name="ssl_error_title">شهادة SSL غير صالحة</string>
+    <string name="ssl_error_message">شهادة SSL الخاصة بالموقع غير صالحة.</string>
+    <string name="ssl_error_question">هل تريد المتابعة على أي حال؟</string>
+    <string name="dnd_permission_title">يتطلب إذن "عدم الإزعاج"</string>
+    <string name="dnd_permission_message">لحظر الإشعارات من التطبيقات الأخرى، يرجى منح إذن الوصول إلى وضع "عدم الإزعاج" في الإعدادات.\n\nيسمح هذا للتطبيق بتمكين حظر الإشعارات عند التفعيل.</string>
+    <string name="dnd_permission_open_settings">فتح الإعدادات</string>
+    <string name="dnd_permission_cancel">إلغاء</string>
+    <string name="dnd_enabled">تم تفعيل "عدم الإزعاج" - الإشعارات محظورة</string>
+    <string name="dnd_disabled">تم إيقاف "عدم الإزعاج" - تمت استعادة الإشعارات</string>
+    <string name="dnd_error_enable">خطأ في تفعيل "عدم الإزعاج"</string>
+    <string name="dnd_error_disable">خطأ في إيقاف "عدم الإزعاج"</string>
+    <string name="dnd_error_open_settings">تعذر فتح الإعدادات</string>
+    <string name="dnd_mode_disabled_config">تم تعطيل وضع "عدم الإزعاج" في الإعداد</string>
+</resources>

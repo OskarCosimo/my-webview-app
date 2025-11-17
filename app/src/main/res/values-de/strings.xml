@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">QR-Code scannen</string>
+    <string name="scan_cancelled">Scan abgebrochen</string>
+    <string name="exit_app">App beenden</string>
+    <string name="exit_app_message">Möchten Sie die App beenden?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="share">Teilen</string>
+    <string name="no_internet">Keine Internetverbindung</string>
+    <string name="check_connection">Bitte überprüfen Sie Ihre Verbindung</string>
+    <string name="channel_description">Erhalte wichtige Updates</string>
+    <string name="camera_permission_required">Für das Scannen von QR-Codes ist die Kameraberechtigung erforderlich.</string>
+    <string name="loadingtext">Wird geladen...</string>
+    <string name="http_warning_title">Unsichere Verbindung</string>
+    <string name="http_warning_message">Diese Website verwendet HTTP (unsichere Verbindung). Es wird empfohlen, nur HTTPS-Websites zu besuchen, um Ihre Sicherheit zu gewährleisten. Möchten Sie trotzdem fortfahren?</string>
+    <string name="http_warning_continue">Fortfahren</string>
+    <string name="http_warning_cancel">Abbrechen</string>
+    <string name="ssl_error_title">SSL-Zertifikat ungültig</string>
+    <string name="ssl_error_message">Das SSL-Zertifikat der Website ist ungültig.</string>
+    <string name="ssl_error_question">Möchten Sie trotzdem fortfahren?</string>
+    <string name="dnd_permission_title">Nicht-Stören-Berechtigung erforderlich</string>
+    <string name="dnd_permission_message">Um Benachrichtigungen anderer Apps zu blockieren, gewähre bitte die Nicht-Stören-Zugriffsberechtigung in den Einstellungen.\n\nDadurch kann die App die Benachrichtigungsblockierung aktivieren, wenn sie aktiv ist.</string>
+    <string name="dnd_permission_open_settings">Einstellungen öffnen</string>
+    <string name="dnd_permission_cancel">Abbrechen</string>
+    <string name="dnd_enabled">Nicht-Stören aktiviert - Benachrichtigungen blockiert</string>
+    <string name="dnd_disabled">Nicht-Stören deaktiviert - Benachrichtigungen wiederhergestellt</string>
+    <string name="dnd_error_enable">Fehler beim Aktivieren von Nicht-Stören</string>
+    <string name="dnd_error_disable">Fehler beim Deaktivieren von Nicht-Stören</string>
+    <string name="dnd_error_open_settings">Einstellungen können nicht geöffnet werden</string>
+    <string name="dnd_mode_disabled_config">Nicht-Stören-Modus ist in der Konfiguration deaktiviert</string>
+</resources>

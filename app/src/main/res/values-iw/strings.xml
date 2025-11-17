@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">סרוק קוד QR</string>
+    <string name="scan_cancelled">הסריקה בוטלה</string>
+    <string name="exit_app">יציאה מהאפליקציה</string>
+    <string name="exit_app_message">האם ברצונך לצאת?</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
+    <string name="share">שתף</string>
+    <string name="no_internet">אין חיבור לאינטרנט</string>
+    <string name="check_connection">אנא בדוק את החיבור שלך</string>
+    <string name="channel_description">קבל עדכונים חשובים</string>
+    <string name="camera_permission_required">נדרשת הרשאת מצלמה כדי לסרוק קודי QR</string>
+    <string name="loadingtext">טוען...</string>
+    <string name="http_warning_title">חיבור לא מאובטח</string>
+    <string name="http_warning_message">אתר זה משתמש ב-HTTP (חיבור לא מאובטח). מומלץ לבקר רק באתרים עם HTTPS לשם ביטחונך. האם ברצונך להמשיך בכל זאת?</string>
+    <string name="http_warning_continue">המשך</string>
+    <string name="http_warning_cancel">ביטול</string>
+    <string name="ssl_error_title">תעודת SSL אינה תקפה</string>
+    <string name="ssl_error_message">תעודת ה-SSL של האתר אינה תקפה.</string>
+    <string name="ssl_error_question">האם ברצונך להמשיך בכל זאת?</string>
+    <string name="dnd_permission_title">נדרשת הרשאת "נא לא להפריע"</string>
+    <string name="dnd_permission_message">כדי לחסום התראות מאפליקציות אחרות, יש להעניק הרשאת גישה ל"נא לא להפריע" בהגדרות.\n\nזה מאפשר לאפליקציה להפעיל חסימת התראות כשהיא פעילה.</string>
+    <string name="dnd_permission_open_settings">פתח הגדרות</string>
+    <string name="dnd_permission_cancel">ביטול</string>
+    <string name="dnd_enabled">מצב "נא לא להפריע" הופעל - התראות נחסמו</string>
+    <string name="dnd_disabled">מצב "נא לא להפריע" בוטל - התראות שוחזרו</string>
+    <string name="dnd_error_enable">שגיאה בהפעלת מצב "נא לא להפריע"</string>
+    <string name="dnd_error_disable">שגיאה בביטול מצב "נא לא להפריע"</string>
+    <string name="dnd_error_open_settings">לא ניתן לפתוח הגדרות</string>
+    <string name="dnd_mode_disabled_config">מצב "נא לא להפריע" מושבת בתצורה</string>
+</resources>

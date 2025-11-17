@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Status Bar Background - color set dynamically from Config.STATUS_BAR_COLOR -->
+    <View
+        android:id="@+id/statusBarBackground"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
+    <!-- SwipeRefreshLayout for pull-to-refresh functionality -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Main WebView Container -->
+        <FrameLayout
+            android:id="@+id/webview_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!-- Offline View -->
+    <LinearLayout
+        android:id="@+id/offline_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@color/offline_background">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_internet"
+            android:textSize="24sp"
+            android:textColor="@color/offline_text"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/check_connection"
+            android:textSize="16sp"
+            android:textColor="@color/offline_text" />
+
+    </LinearLayout>
+
+    <!-- Secondary WebView Container (hidden by default) -->
+    <FrameLayout
+        android:id="@+id/secondary_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@android:color/white"
+        android:visibility="gone">
+
+        <!-- Status Bar Background for Secondary Browser - color set dynamically from Config.STATUS_BAR_COLOR -->
+        <View
+            android:id="@+id/secondaryStatusBarBackground"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+
+        <!-- Top Bar for Secondary Browser -->
+        <LinearLayout
+            android:id="@+id/secondary_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:background="@color/secondary_browser_bg"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp"
+            android:elevation="4dp">
+
+            <!-- Title and URL container (vertical layout) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/secondary_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/secondary_browser_title"
+                    android:textColor="@color/secondary_browser_text"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- URL Display Row with SSL Icon -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- SSL Certificate Icon (clickable) - on the LEFT -->
+                    <ImageView
+                        android:id="@+id/secondary_ssl_icon"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_marginEnd="4dp"
+                        android:contentDescription="SSL Certificate Status"
+                        android:scaleType="centerInside"
+                        android:visibility="gone" />
+
+                    <!-- URL Display (small text) -->
+                    <TextView
+                        android:id="@+id/secondary_url_display"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="about:blank"
+                        android:textColor="@color/secondary_browser_text"
+                        android:textSize="11sp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:alpha="0.6" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Close Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/close_secondary_webview"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="✕"
+                android:textSize="24sp"
+                android:textColor="@color/secondary_browser_text"
+                android:backgroundTint="@color/secondary_browser_button"
+                app:cornerRadius="4dp"
+                app:elevation="0dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                style="@style/Widget.MaterialComponents.Button" />
+
+        </LinearLayout>
+
+        <!-- SwipeRefreshLayout for secondary WebView pull-to-refresh -->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/secondary_swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="56dp"
+            android:background="@android:color/white">
+
+            <!-- Secondary WebView Container -->
+            <FrameLayout
+                android:id="@+id/secondary_webview_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </FrameLayout>
+
+</FrameLayout>

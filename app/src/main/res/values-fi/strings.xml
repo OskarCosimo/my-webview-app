@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">Skannaa QR-koodi</string>
+    <string name="scan_cancelled">Skannaus peruutettu</string>
+    <string name="exit_app">Poistu sovelluksesta</string>
+    <string name="exit_app_message">Haluatko poistua?</string>
+    <string name="yes">Kyllä</string>
+    <string name="no">Ei</string>
+    <string name="share">Jaa</string>
+    <string name="no_internet">Ei internetyhteyttä</string>
+    <string name="check_connection">Tarkista yhteytesi</string>
+    <string name="channel_description">Vastaanota tärkeitä päivityksiä</string>
+    <string name="camera_permission_required">Kameran käyttöoikeus tarvitaan QR-koodien skannaamiseen</string>
+    <string name="loadingtext">Ladataan...</string>
+    <string name="http_warning_title">Turvaton yhteys</string>
+    <string name="http_warning_message">Tämä verkkosivusto käyttää HTTP:tä (turvaton yhteys). On suositeltavaa vierailla vain HTTPS-sivustoilla turvallisuutesi vuoksi. Haluatko jatkaa silti?</string>
+    <string name="http_warning_continue">Jatka</string>
+    <string name="http_warning_cancel">Peruuta</string>
+    <string name="ssl_error_title">SSL-varmenne ei kelpaa</string>
+    <string name="ssl_error_message">Sivuston SSL-varmenne ei ole kelvollinen.</string>
+    <string name="ssl_error_question">Haluatko jatkaa silti?</string>
+    <string name="dnd_permission_title">Älä häiritse -lupa vaaditaan</string>
+    <string name="dnd_permission_message">Estääksesi ilmoitukset muista sovelluksista, anna Älä häiritse -pääsyoikeus asetuksista.\n\nTämä sallii sovelluksen ottaa käyttöön ilmoitusten eston, kun se on aktiivinen.</string>
+    <string name="dnd_permission_open_settings">Avaa asetukset</string>
+    <string name="dnd_permission_cancel">Peruuta</string>
+    <string name="dnd_enabled">Älä häiritse käytössä - ilmoitukset estetty</string>
+    <string name="dnd_disabled">Älä häiritse pois käytöstä - ilmoitukset palautettu</string>
+    <string name="dnd_error_enable">Virhe otettaessa käyttöön Älä häiritse -tilaa</string>
+    <string name="dnd_error_disable">Virhe poistettaessa käytöstä Älä häiritse -tilaa</string>
+    <string name="dnd_error_open_settings">Asetuksia ei voi avata</string>
+    <string name="dnd_mode_disabled_config">Älä häiritse -tila on poistettu käytöstä asetuksissa</string>
+</resources>

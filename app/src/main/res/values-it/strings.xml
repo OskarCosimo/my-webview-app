@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">Scansiona codice QR</string>
+    <string name="scan_cancelled">Scansione annullata</string>
+    <string name="exit_app">Esci dall\'app</string>
+    <string name="exit_app_message">Vuoi uscire?</string>
+    <string name="yes">Sì</string>
+    <string name="no">No</string>
+    <string name="share">Condividi</string>
+    <string name="no_internet">Nessuna connessione Internet</string>
+    <string name="check_connection">Controlla la tua connessione</string>
+    <string name="channel_description">Ricevi aggiornamenti importanti</string>
+    <string name="camera_permission_required">Per scansionare i codici QR è necessaria l\'autorizzazione della fotocamera</string>
+    <string name="loadingtext">In caricamento...</string>
+    <string name="http_warning_title">Connessione non sicura</string>
+    <string name="http_warning_message">Questo sito utilizza HTTP (connessione non sicura). Si consiglia di visitare solo siti HTTPS per la tua sicurezza. Vuoi continuare comunque?</string>
+    <string name="http_warning_continue">Continua</string>
+    <string name="http_warning_cancel">Annulla</string>
+    <string name="ssl_error_title">Certificato SSL non valido</string>
+    <string name="ssl_error_message">Il certificato SSL del sito non è valido.</string>
+    <string name="ssl_error_question">Vuoi continuare comunque?</string>
+    <string name="dnd_permission_title">Permesso Non Disturbare richiesto</string>
+    <string name="dnd_permission_message">Per bloccare le notifiche da altre app, concedi l\'autorizzazione di accesso a Non Disturbare nelle Impostazioni.\n\nQuesto consente all\'app di attivare il blocco delle notifiche quando è in uso.</string>
+    <string name="dnd_permission_open_settings">Apri Impostazioni</string>
+    <string name="dnd_permission_cancel">Annulla</string>
+    <string name="dnd_enabled">Modalità Non Disturbare attivata - notifiche bloccate</string>
+    <string name="dnd_disabled">Modalità Non Disturbare disattivata - notifiche ripristinate</string>
+    <string name="dnd_error_enable">Errore durante l\'attivazione di Non Disturbare</string>
+    <string name="dnd_error_disable">Errore durante la disattivazione di Non Disturbare</string>
+    <string name="dnd_error_open_settings">Impossibile aprire le Impostazioni</string>
+    <string name="dnd_mode_disabled_config">La modalità Non Disturbare è disabilitata nella configurazione</string>
+</resources>

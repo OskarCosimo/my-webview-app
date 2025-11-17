@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">Сканувати QR-код</string>
+    <string name="scan_cancelled">Сканування скасовано</string>
+    <string name="exit_app">Вийти з програми</string>
+    <string name="exit_app_message">Бажаєте вийти?</string>
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
+    <string name="share">Поділитися</string>
+    <string name="no_internet">Немає підключення до Інтернету</string>
+    <string name="check_connection">Будь ласка, перевірте своє з’єднання</string>
+    <string name="channel_description">Отримуйте важливі оновлення</string>
+    <string name="camera_permission_required">Для сканування QR-кодів потрібен дозвіл на використання камери</string>
+    <string name="loadingtext">Завантаження...</string>
+    <string name="http_warning_title">Небезпечне з’єднання</string>
+    <string name="http_warning_message">Цей вебсайт використовує HTTP (незахищене з’єднання). Рекомендується відвідувати лише сайти HTTPS для вашої безпеки. Бажаєте продовжити?</string>
+    <string name="http_warning_continue">Продовжити</string>
+    <string name="http_warning_cancel">Скасувати</string>
+    <string name="ssl_error_title">Нейчинний SSL-сертифікат</string>
+    <string name="ssl_error_message">SSL-сертифікат цього сайту недійсний.</string>
+    <string name="ssl_error_question">Хочете продовжити?</string>
+    <string name="dnd_permission_title">Потрібен дозвіл «Не турбувати»</string>
+    <string name="dnd_permission_message">Щоб блокувати сповіщення від інших додатків, надайте доступ до функції «Не турбувати» у налаштуваннях.\n\nЦе дозволяє додатку блокувати сповіщення, коли він активний.</string>
+    <string name="dnd_permission_open_settings">Відкрити налаштування</string>
+    <string name="dnd_permission_cancel">Скасувати</string>
+    <string name="dnd_enabled">Режим «Не турбувати» увімкнено - сповіщення заблоковано</string>
+    <string name="dnd_disabled">Режим «Не турбувати» вимкнено - сповіщення відновлено</string>
+    <string name="dnd_error_enable">Помилка при увімкненні режиму «Не турбувати»</string>
+    <string name="dnd_error_disable">Помилка при вимкненні режиму «Не турбувати»</string>
+    <string name="dnd_error_open_settings">Не вдається відкрити налаштування</string>
+    <string name="dnd_mode_disabled_config">Режим «Не турбувати» вимкнено у конфігурації</string>
+</resources>

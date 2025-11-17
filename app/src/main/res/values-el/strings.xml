@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">Σάρωση κωδικού QR</string>
+    <string name="scan_cancelled">Η σάρωση ακυρώθηκε</string>
+    <string name="exit_app">Έξοδος από την εφαρμογή</string>
+    <string name="exit_app_message">Θέλετε να αποχωρήσετε;</string>
+    <string name="yes">Ναι</string>
+    <string name="no">Όχι</string>
+    <string name="share">Κοινή χρήση</string>
+    <string name="no_internet">Χωρίς σύνδεση στο Διαδίκτυο</string>
+    <string name="check_connection">Παρακαλώ ελέγξτε τη σύνδεσή σας</string>
+    <string name="channel_description">Λάβετε σημαντικές ενημερώσεις</string>
+    <string name="camera_permission_required">Απαιτείται άδεια κάμερας για τη σάρωση κωδικών QR</string>
+    <string name="loadingtext">Φόρτωση...</string>
+    <string name="http_warning_title">Μη ασφαλής σύνδεση</string>
+    <string name="http_warning_message">Αυτός ο ιστότοπος χρησιμοποιεί HTTP (μη ασφαλή σύνδεση). Συνιστάται να επισκέπτεστε μόνο ιστότοπους HTTPS για την ασφάλειά σας. Θέλετε να συνεχίσετε παρ\' όλα αυτά;</string>
+    <string name="http_warning_continue">Συνέχεια</string>
+    <string name="http_warning_cancel">Ακύρωση</string>
+    <string name="ssl_error_title">Μη έγκυρο πιστοποιητικό SSL</string>
+    <string name="ssl_error_message">Το πιστοποιητικό SSL του ιστότοπου δεν είναι έγκυρο.</string>
+    <string name="ssl_error_question">Θέλετε να συνεχίσετε έτσι κι αλλιώς;</string>
+    <string name="dnd_permission_title">Απαιτείται άδεια "Μην ενοχλείτε"</string>
+    <string name="dnd_permission_message">Για να αποκλείσετε ειδοποιήσεις από άλλες εφαρμογές, παραχωρήστε άδεια πρόσβασης στη ρύθμιση "Μην ενοχλείτε".\n\nΑυτό επιτρέπει στην εφαρμογή να ενεργοποιεί τον αποκλεισμό ειδοποιήσεων όταν είναι ενεργή.</string>
+    <string name="dnd_permission_open_settings">Άνοιγμα ρυθμίσεων</string>
+    <string name="dnd_permission_cancel">Ακύρωση</string>
+    <string name="dnd_enabled">Η λειτουργία "Μην ενοχλείτε" ενεργοποιήθηκε - ειδοποιήσεις αποκλείστηκαν</string>
+    <string name="dnd_disabled">Η λειτουργία "Μην ενοχλείτε" απενεργοποιήθηκε - ειδοποιήσεις επανήλθαν</string>
+    <string name="dnd_error_enable">Σφάλμα κατά την ενεργοποίηση του "Μην ενοχλείτε"</string>
+    <string name="dnd_error_disable">Σφάλμα κατά την απενεργοποίηση του "Μην ενοχλείτε"</string>
+    <string name="dnd_error_open_settings">Αδυναμία ανοίγματος ρυθμίσεων</string>
+    <string name="dnd_mode_disabled_config">Η λειτουργία "Μην ενοχλείτε" είναι απενεργοποιημένη στη ρύθμιση</string>
+</resources>

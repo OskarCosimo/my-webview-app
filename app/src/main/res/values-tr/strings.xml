@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">QR Kodunu Tara</string>
+    <string name="scan_cancelled">Tarama iptal edildi</string>
+    <string name="exit_app">Uygulamadan çık</string>
+    <string name="exit_app_message">Çıkmak istiyor musunuz?</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="share">Paylaş</string>
+    <string name="no_internet">İnternet bağlantısı yok</string>
+    <string name="check_connection">Lütfen bağlantınızı kontrol edin</string>
+    <string name="channel_description">Önemli güncellemeleri alın</string>
+    <string name="camera_permission_required">QR kodlarını taramak için kamera izni gereklidir</string>
+    <string name="loadingtext">Yükleniyor...</string>
+    <string name="http_warning_title">Güvenli Olmayan Bağlantı</string>
+    <string name="http_warning_message">Bu web sitesi HTTP (güvenli olmayan bağlantı) kullanıyor. Güvenliğiniz için yalnızca HTTPS web sitelerini ziyaret etmeniz önerilir. Yine de devam etmek istiyor musunuz?</string>
+    <string name="http_warning_continue">Devam et</string>
+    <string name="http_warning_cancel">İptal</string>
+    <string name="ssl_error_title">SSL Sertifikası Geçersiz</string>
+    <string name="ssl_error_message">Web sitesinin SSL sertifikası geçerli değil.</string>
+    <string name="ssl_error_question">Yine de devam etmek istiyor musunuz?</string>
+    <string name="dnd_permission_title">Rahatsız Etme İzni Gerekli</string>
+    <string name="dnd_permission_message">Diğer uygulamalardan gelen bildirimleri engellemek için, Ayarlar’da Rahatsız Etme erişim izni verin.\n\nBu, uygulamanın etkin olduğunda bildirim engellemeyi etkinleştirmesini sağlar.</string>
+    <string name="dnd_permission_open_settings">Ayarları Aç</string>
+    <string name="dnd_permission_cancel">İptal</string>
+    <string name="dnd_enabled">Rahatsız Etme etkin - bildirimler engellendi</string>
+    <string name="dnd_disabled">Rahatsız Etme devre dışı - bildirimler geri yüklendi</string>
+    <string name="dnd_error_enable">Rahatsız Etme etkinleştirme hatası</string>
+    <string name="dnd_error_disable">Rahatsız Etme devre dışı bırakma hatası</string>
+    <string name="dnd_error_open_settings">Ayarlar açılamıyor</string>
+    <string name="dnd_mode_disabled_config">Rahatsız Etme modu yapılandırmada devre dışı</string>
+</resources>

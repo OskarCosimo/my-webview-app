@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name" translatable="false">MY WEBVIEW APP</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="scan_cancelled">Scan cancelled</string>
+    <string name="exit_app">Exit App</string>
+    <string name="exit_app_message">Do you want to exit?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="share">Share</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="check_connection">Please check your connection</string>
+    <string name="channel_name" translatable="false">MY Notifications</string>
+    <string name="channel_description">Receive important updates</string>
+    <string name="default_notification_channel_id" translatable="false">my_notifications</string>
+    <string name="camera_permission_required">Camera permission is required to scan QR codes</string>
+    <string name="secondary_browser_title" translatable="false">MY Browser</string>
+    <string name="loadingtext">Loading...</string>
+    <string name="http_warning_title">Insecure Connection</string>
+    <string name="http_warning_message">This website uses HTTP (non-secure connection). It is recommended to only visit HTTPS websites for your security. Do you want to proceed anyway?</string>
+    <string name="http_warning_continue">Continue</string>
+    <string name="http_warning_cancel">Cancel</string>
+    <string name="ssl_error_title">SSL Certificate not Valid</string>
+    <string name="ssl_error_message">The website\'s SSL certificate is not valid.</string>
+    <string name="ssl_error_question">Do you want to proceed anyway?</string>
+    <string name="dnd_permission_title">Do Not Disturb Permission Required</string>
+    <string name="dnd_permission_message">To block notifications from other apps, please grant Do Not Disturb access permission in Settings.\n\nThis allows the app to enable notification blocking when active.</string>
+    <string name="dnd_permission_open_settings">Open Settings</string>
+    <string name="dnd_permission_cancel">Cancel</string>
+    <string name="dnd_enabled">Do Not Disturb enabled - notifications blocked</string>
+    <string name="dnd_disabled">Do Not Disturb disabled - notifications restored</string>
+    <string name="dnd_error_enable">Error enabling Do Not Disturb</string>
+    <string name="dnd_error_disable">Error disabling Do Not Disturb</string>
+    <string name="dnd_error_open_settings">Unable to open settings</string>
+    <string name="dnd_mode_disabled_config">Do Not Disturb mode is disabled in Config</string>
+</resources>

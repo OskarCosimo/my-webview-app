@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">Scanner le code QR</string>
+    <string name="scan_cancelled">Analyse annulée</string>
+    <string name="exit_app">Quitter l\’application</string>
+    <string name="exit_app_message">Voulez-vous quitter ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="share">Partager</string>
+    <string name="no_internet">Aucune connexion Internet</string>
+    <string name="check_connection">Veuillez vérifier votre connexion</string>
+    <string name="channel_description">Recevez des mises à jour importantes</string>
+    <string name="camera_permission_required">L\'autorisation d\'utiliser la caméra est requise pour scanner les codes QR.</string>
+    <string name="loadingtext">Chargement...</string>
+    <string name="http_warning_title">Connexion non sécurisée</string>
+    <string name="http_warning_message">Ce site utilise le protocole HTTP (connexion non sécurisée). Il est recommandé de visiter uniquement des sites HTTPS pour votre sécurité. Voulez-vous continuer quand même ?</string>
+    <string name="http_warning_continue">Continuer</string>
+    <string name="http_warning_cancel">Annuler</string>
+    <string name="ssl_error_title">Certificat SSL non valide</string>
+    <string name="ssl_error_message">Le certificat SSL du site web n’est pas valide.</string>
+    <string name="ssl_error_question">Voulez-vous continuer quand même?</string>
+    <string name="dnd_permission_title">Autorisation Ne Pas Déranger requise</string>
+    <string name="dnd_permission_message">Pour bloquer les notifications des autres applications, veuillez accorder l’autorisation d’accès Ne Pas Déranger dans les paramètres.\n\nCela permet à l’application d’activer le blocage des notifications lorsqu’elle est active.</string>
+    <string name="dnd_permission_open_settings">Ouvrir les paramètres</string>
+    <string name="dnd_permission_cancel">Annuler</string>
+    <string name="dnd_enabled">Mode Ne Pas Déranger activé - notifications bloquées</string>
+    <string name="dnd_disabled">Mode Ne Pas Déranger désactivé - notifications restaurées</string>
+    <string name="dnd_error_enable">Erreur lors de l’activation du mode Ne Pas Déranger</string>
+    <string name="dnd_error_disable">Erreur lors de la désactivation du mode Ne Pas Déranger</string>
+    <string name="dnd_error_open_settings">Impossible d’ouvrir les paramètres</string>
+    <string name="dnd_mode_disabled_config">Le mode Ne Pas Déranger est désactivé dans la configuration</string>
+</resources>

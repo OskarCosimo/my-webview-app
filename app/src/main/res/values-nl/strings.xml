@@ -1,0 +1,31 @@
+<resources>
+    <string name="scan_qr_code">QR-code scannen</string>
+    <string name="scan_cancelled">Scan geannuleerd</string>
+    <string name="exit_app">App afsluiten</string>
+    <string name="exit_app_message">Wil je afsluiten?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="share">Delen</string>
+    <string name="no_internet">Geen internetverbinding</string>
+    <string name="check_connection">Controleer je verbinding</string>
+    <string name="channel_description">Ontvang belangrijke updates</string>
+    <string name="camera_permission_required">Cameratoestemming is vereist om QR-codes te scannen</string>
+    <string name="loadingtext">Bezig met laden...</string>
+    <string name="http_warning_title">Onveilige verbinding</string>
+    <string name="http_warning_message">Deze website gebruikt HTTP (onveilige verbinding). Het wordt aanbevolen alleen HTTPS-websites te bezoeken voor je veiligheid. Wil je toch doorgaan?</string>
+    <string name="http_warning_continue">Doorgaan</string>
+    <string name="http_warning_cancel">Annuleren</string>
+    <string name="ssl_error_title">SSL-certificaat ongeldig</string>
+    <string name="ssl_error_message">Het SSL-certificaat van de website is ongeldig.</string>
+    <string name="ssl_error_question">Wil je toch doorgaan?</string>
+    <string name="dnd_permission_title">Niet storen-toestemming vereist</string>
+    <string name="dnd_permission_message">Om meldingen van andere apps te blokkeren, geef toegang tot Niet storen in de instellingen.\n\nDit stelt de app in staat om meldingsblokkering in te schakelen wanneer deze actief is.</string>
+    <string name="dnd_permission_open_settings">Instellingen openen</string>
+    <string name="dnd_permission_cancel">Annuleren</string>
+    <string name="dnd_enabled">Niet storen ingeschakeld - meldingen geblokkeerd</string>
+    <string name="dnd_disabled">Niet storen uitgeschakeld - meldingen hersteld</string>
+    <string name="dnd_error_enable">Fout bij inschakelen van Niet storen</string>
+    <string name="dnd_error_disable">Fout bij uitschakelen van Niet storen</string>
+    <string name="dnd_error_open_settings">Kan instellingen niet openen</string>
+    <string name="dnd_mode_disabled_config">Niet storen-modus is uitgeschakeld in configuratie</string>
+</resources>
