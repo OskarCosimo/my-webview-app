@@ -5,7 +5,7 @@ A customizable Android WebView app with advanced features: primary and secondary
 
 ![Android](https://img.shields.io/badge/Platform-Android-green.svg)
 ![Language](https://img.shields.io/badge/Language-Java-orange.svg)
-![License](https://img.shields.io/badge/License-Apache-2.0-blue.svg)
+![License](https://img.shields.io/badge/License-Apache2.0-blue.svg)
 ![Build](https://img.shields.io/badge/Build-Gradle-brightgreen.svg)
 
 A powerful and feature-rich Android WebView application with 20+ built-in language translations, Firebase integration, QR code scanning, and extensive customization options.
