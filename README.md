@@ -51,7 +51,7 @@ A powerful and feature-rich Android WebView application with 20+ built-in langua
 - ↔️ **Swipe Navigation** - Gesture-based back/forward navigation
 - 📊 **Progress Indicators** - Multiple styles (spinner, linear progress)
 - 🔐 **Cookie & Cache Management** - Fine-grained control over data storage
-- 📱 **Orientation Lock** - Control portrait/landscape modes per device type
+- 📱 **Orientation Lock** - Control portrait/landscape/auto/none modes per device type
 
 ---
 
