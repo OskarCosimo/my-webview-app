@@ -243,7 +243,7 @@ public static final String TABLET_ORIENTATION = "none"; // Options: "portrait", 
 - `"portrait"` - Force portrait mode
 - `"landscape"` - Force landscape mode
 - `"auto"` - Auto-rotate based on device sensor
-- `"none"` - Use device default settings
+- `"none"` - Use device default settings (reccomended)
 
 ---
 
