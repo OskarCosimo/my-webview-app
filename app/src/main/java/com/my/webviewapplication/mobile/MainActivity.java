@@ -149,6 +149,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate: After super.onCreate");
 
+        // Enable official Edge-to-Edge display support for modern Android versions
+        androidx.activity.EdgeToEdge.enable(this);
+
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: After setContentView");
 
@@ -951,15 +954,23 @@ public class MainActivity extends AppCompatActivity {
      * Only called when FULLSCREEN_MODE = false
      */
     private void setupStatusBarBackground() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            // Get status bar height
-            int statusBarHeight = 0;
-            int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-            if (resourceId > 0) {
-                statusBarHeight = getResources().getDimensionPixelSize(resourceId);
-            }
+        // Edge-to-Edge requires API 21+ but modern WindowInsets are safely handled via ViewCompat
+        View webViewContainer = findViewById(R.id.webview_container);
+        if (webViewContainer == null) {
+            Log.w(TAG, "webViewContainer is null, cannot apply window insets listeners");
+            return;
+        }
 
-            Log.d(TAG, "Status bar height: " + statusBarHeight + "px");
+        // Use ViewCompat to dynamically listen to modern system bar size changes instead of old pixel reflection
+        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(webViewContainer, (view, windowInsets) -> {
+            androidx.core.graphics.Insets insets = windowInsets.getInsets(
+                    androidx.core.view.WindowInsetsCompat.Type.statusBars() |
+                            androidx.core.view.WindowInsetsCompat.Type.displayCutout()
+            );
+
+            // This is the real, accurate height of the status bar provided by the OS
+            int statusBarHeight = insets.top;
+            Log.d(TAG, "Modern Edge-to-Edge status bar height detected: " + statusBarHeight + "px");
 
             // Show and size the custom status bar background for main WebView
             View statusBarBg = findViewById(R.id.statusBarBackground);
@@ -968,7 +979,7 @@ public class MainActivity extends AppCompatActivity {
                 statusBarBg.getLayoutParams().height = statusBarHeight;
                 statusBarBg.setBackgroundColor(android.graphics.Color.parseColor(Config.STATUS_BAR_COLOR));
                 statusBarBg.requestLayout();
-                Log.d(TAG, "Main status bar background set to: " + Config.STATUS_BAR_COLOR);
+                Log.d(TAG, "Main status bar background synchronized with insets: " + Config.STATUS_BAR_COLOR);
             }
 
             // Show and size the custom status bar background for secondary WebView
@@ -978,15 +989,12 @@ public class MainActivity extends AppCompatActivity {
                 secondaryStatusBarBg.getLayoutParams().height = statusBarHeight;
                 secondaryStatusBarBg.setBackgroundColor(android.graphics.Color.parseColor(Config.STATUS_BAR_COLOR));
                 secondaryStatusBarBg.requestLayout();
-                Log.d(TAG, "Secondary status bar background set to: " + Config.STATUS_BAR_COLOR);
+                Log.d(TAG, "Secondary status bar background synchronized with insets: " + Config.STATUS_BAR_COLOR);
             }
 
-            // Add padding to webview container to push content below status bar background
-            View webViewContainer = findViewById(R.id.webview_container);
-            if (webViewContainer != null) {
-                webViewContainer.setPadding(0, statusBarHeight, 0, 0);
-                Log.d(TAG, "WebView container padding added: " + statusBarHeight + "px");
-            }
+            // Add padding to webview container to push content safely below the status bar background
+            view.setPadding(0, statusBarHeight, 0, 0);
+            Log.d(TAG, "WebView container padding dynamically updated: " + statusBarHeight + "px");
 
             // For secondary container: add top margin to secondary_top_bar
             LinearLayout secondaryTopBar = findViewById(R.id.secondary_top_bar);
@@ -995,7 +1003,7 @@ public class MainActivity extends AppCompatActivity {
                         (android.view.ViewGroup.MarginLayoutParams) secondaryTopBar.getLayoutParams();
                 params.topMargin = statusBarHeight;
                 secondaryTopBar.setLayoutParams(params);
-                Log.d(TAG, "Secondary top bar margin added: " + statusBarHeight + "px");
+                Log.d(TAG, "Secondary top bar margin dynamically updated: " + statusBarHeight + "px");
             }
 
             // Update secondary_swipe_refresh_layout margin to account for status bar + top bar
@@ -1004,14 +1012,17 @@ public class MainActivity extends AppCompatActivity {
             if (secondarySwipeRefresh != null) {
                 android.view.ViewGroup.MarginLayoutParams params =
                         (android.view.ViewGroup.MarginLayoutParams) secondarySwipeRefresh.getLayoutParams();
-                // 56dp (top bar height) + status bar height
+                // 56dp (top bar height) + dynamic status bar height
                 int topBarHeightDp = 56;
                 int topBarHeightPx = (int) (topBarHeightDp * getResources().getDisplayMetrics().density);
                 params.topMargin = topBarHeightPx + statusBarHeight;
                 secondarySwipeRefresh.setLayoutParams(params);
-                Log.d(TAG, "Secondary swipe refresh margin set to: " + params.topMargin + "px");
+                Log.d(TAG, "Secondary swipe refresh margin dynamically updated: " + params.topMargin + "px");
             }
-        }
+
+            // Return the insets so the system can continue dispatching them if needed by other views
+            return windowInsets;
+        });
     }
 
     /**
