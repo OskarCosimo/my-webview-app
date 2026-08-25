@@ -1345,47 +1345,42 @@ public class MainActivity extends AppCompatActivity {
         if (Config.ENABLE_FIREBASE_PUSH) {
             Log.d(TAG, "initializeFirebase: Requesting FCM Token...");
 
-            // Non-deprecated token retrieval flow using explicit Task<String> listener
-            com.google.android.gms.tasks.Task<String> tokenTask = com.google.firebase.messaging.FirebaseMessaging.getInstance().getToken();
+            // Non-deprecated token retrieval flow using FirebaseMessaging Task API
+            FirebaseMessaging.getInstance().getToken()
+                    .addOnSuccessListener(token -> {
+                        if (token != null && !token.isEmpty()) {
+                            fcmToken = token;
+                            Log.d(TAG, "FCM Token obtained successfully: " + fcmToken);
 
-            tokenTask.addOnCompleteListener(task -> {
-                if (!task.isSuccessful() || task.getResult() == null) {
-                    Log.e(TAG, "Fetching FCM registration token failed", task.getException());
-                    return;
-                }
+                            if (Config.ENHANCE_URL_WITH_FCM_TOKEN && !"local".equalsIgnoreCase(Config.START_URL_TYPE)) {
+                                runOnUiThread(() -> {
+                                    if (mainWebView == null) return;
 
-                // Token retrieved successfully
-                fcmToken = task.getResult();
-                Log.d(TAG, "FCM Token obtained successfully: " + fcmToken);
-
-                if (Config.ENHANCE_URL_WITH_FCM_TOKEN && !"local".equalsIgnoreCase(Config.START_URL_TYPE)) {
-                    runOnUiThread(() -> {
-                        if (mainWebView == null) return;
-
-                        if ("JAVASCRIPT".equalsIgnoreCase(Config.FCM_TOKEN_TRANSMISSION_MODE)) {
-                            // METHOD 1: Inject token via JavaScript evaluation without page reload
-                            String jsCode = String.format(
-                                    "if (typeof window.%s === 'function') { window.%s('%s'); }",
-                                    Config.FCM_JS_CALLBACK_FUNCTION,
-                                    Config.FCM_JS_CALLBACK_FUNCTION,
-                                    fcmToken
-                            );
-                            Log.d(TAG, "Injecting FCM Token via JS evaluation: " + jsCode);
-                            mainWebView.evaluateJavascript(jsCode, null);
-
-                        } else {
-                            // LEGACY METHOD: Reload main URL with fcmtoken query parameter
-                            String currentUrl = mainWebView.getUrl();
-                            if (currentUrl == null || !currentUrl.contains("fcmtoken=")) {
-                                Log.d(TAG, "fcmtoken missing in current URL. Reloading main URL with token...");
-                                loadMainUrl();
+                                    if ("REDIRECT".equalsIgnoreCase(Config.FCM_TOKEN_TRANSMISSION_MODE)) {
+                                        // FORCE RELOAD: Append token and reload startup URL immediately
+                                        Log.d(TAG, "FCM Token ready. Reloading main URL with token...");
+                                        loadMainUrl();
+                                    } else {
+                                        // JAVASCRIPT INJECTION METHOD
+                                        String jsCode = String.format(
+                                                "if (typeof window.%s === 'function') { window.%s('%s'); }",
+                                                Config.FCM_JS_CALLBACK_FUNCTION,
+                                                Config.FCM_JS_CALLBACK_FUNCTION,
+                                                fcmToken
+                                        );
+                                        Log.d(TAG, "Injecting FCM Token via JS evaluation: " + jsCode);
+                                        mainWebView.evaluateJavascript(jsCode, null);
+                                    }
+                                });
                             }
                         }
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e(TAG, "Fetching FCM registration token failed", e);
                     });
-                }
-            });
         }
     }
+    
 
     private static final long NETWORK_CHECK_INTERVAL = 3000; // 3 secondi
     private static final int MAX_OFFLINE_RETRY_ATTEMPTS = 3;
