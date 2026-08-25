@@ -1,4 +1,4 @@
-package com.myetv.tv.mobile;
+package com.my.webviewapplication.mobile;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
