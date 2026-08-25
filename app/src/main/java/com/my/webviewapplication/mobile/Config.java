@@ -83,7 +83,7 @@ public class Config {
     // Secondary Browser Corner Radius for Button (in dp)
     public static final int SECONDARY_BROWSER_BUTTON_CORNER_RADIUS = 4;
 
-// ============================================
+    // ============================================
     // SPLASH SCREEN CONFIGURATION
     // ============================================
 
@@ -157,6 +157,14 @@ public class Config {
     public static final boolean ENABLE_FIREBASE_PUSH = true;
     // this will add the param fcmtoken to the querystring with the firebase user id to use it with api
     public static final boolean ENHANCE_URL_WITH_FCM_TOKEN = true;
+
+    // FCM token transmission mode to WebView:
+    // "JAVASCRIPT" = Injects token via evaluateJavascript (no page reload/redirect)
+    // "REDIRECT"   = Reloads initial URL with ?fcmtoken= in query string (legacy mode)
+    public static final String FCM_TOKEN_TRANSMISSION_MODE = "JAVASCRIPT";
+
+    // Global JavaScript function name defined in the PHP web frontend
+    public static final String FCM_JS_CALLBACK_FUNCTION = "onFcmTokenReceived";
     
     // ============================================
     // OFFLINE MODE
