@@ -1345,33 +1345,45 @@ public class MainActivity extends AppCompatActivity {
         if (Config.ENABLE_FIREBASE_PUSH) {
             Log.d(TAG, "initializeFirebase: Requesting FCM Token...");
 
-            FirebaseMessaging.getInstance().getToken()
-                    .addOnCompleteListener(task -> {
-                        if (!task.isSuccessful()) {
-                            Log.e(TAG, "Fetching FCM registration token failed", task.getException());
-                            return;
-                        }
+            // Non-deprecated token retrieval flow using explicit Task<String> listener
+            com.google.android.gms.tasks.Task<String> tokenTask = com.google.firebase.messaging.FirebaseMessaging.getInstance().getToken();
 
-                        // Token success
-                        fcmToken = task.getResult();
-                        Log.d(TAG, "FCM Token obtained successfully: " + fcmToken);
+            tokenTask.addOnCompleteListener(task -> {
+                if (!task.isSuccessful() || task.getResult() == null) {
+                    Log.e(TAG, "Fetching FCM registration token failed", task.getException());
+                    return;
+                }
 
-                        if (Config.ENHANCE_URL_WITH_FCM_TOKEN && !"local".equalsIgnoreCase(Config.START_URL_TYPE)) {
-                            runOnUiThread(() -> {
-                                if (mainWebView != null) {
-                                    String currentUrl = mainWebView.getUrl();
-                                    Log.d(TAG, "Current WebView URL when FCM token arrived: " + currentUrl);
-                                    
-                                    if (currentUrl == null || !currentUrl.contains("fcmtoken=")) {
-                                        Log.d(TAG, "fcmtoken missing in current URL. Reloading main URL with token...");
-                                        loadMainUrl();
-                                    } else {
-                                        Log.d(TAG, "fcmtoken is already present in current URL.");
-                                    }
-                                }
-                            } );
+                // Token retrieved successfully
+                fcmToken = task.getResult();
+                Log.d(TAG, "FCM Token obtained successfully: " + fcmToken);
+
+                if (Config.ENHANCE_URL_WITH_FCM_TOKEN && !"local".equalsIgnoreCase(Config.START_URL_TYPE)) {
+                    runOnUiThread(() -> {
+                        if (mainWebView == null) return;
+
+                        if ("JAVASCRIPT".equalsIgnoreCase(Config.FCM_TOKEN_TRANSMISSION_MODE)) {
+                            // METHOD 1: Inject token via JavaScript evaluation without page reload
+                            String jsCode = String.format(
+                                    "if (typeof window.%s === 'function') { window.%s('%s'); }",
+                                    Config.FCM_JS_CALLBACK_FUNCTION,
+                                    Config.FCM_JS_CALLBACK_FUNCTION,
+                                    fcmToken
+                            );
+                            Log.d(TAG, "Injecting FCM Token via JS evaluation: " + jsCode);
+                            mainWebView.evaluateJavascript(jsCode, null);
+
+                        } else {
+                            // LEGACY METHOD: Reload main URL with fcmtoken query parameter
+                            String currentUrl = mainWebView.getUrl();
+                            if (currentUrl == null || !currentUrl.contains("fcmtoken=")) {
+                                Log.d(TAG, "fcmtoken missing in current URL. Reloading main URL with token...");
+                                loadMainUrl();
+                            }
                         }
                     });
+                }
+            });
         }
     }
 
