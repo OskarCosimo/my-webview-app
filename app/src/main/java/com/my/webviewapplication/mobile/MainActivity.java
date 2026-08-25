@@ -1343,11 +1343,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeFirebase() {
         if (Config.ENABLE_FIREBASE_PUSH) {
+            Log.d(TAG, "initializeFirebase: Requesting FCM Token...");
+
             FirebaseMessaging.getInstance().getToken()
                     .addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            fcmToken = task.getResult();
-                            Log.d(TAG, "FCM Token: " + fcmToken);
+                        if (!task.isSuccessful()) {
+                            Log.e(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Token success
+                        fcmToken = task.getResult();
+                        Log.d(TAG, "FCM Token obtained successfully: " + fcmToken);
+
+                        if (Config.ENHANCE_URL_WITH_FCM_TOKEN && !"local".equalsIgnoreCase(Config.START_URL_TYPE)) {
+                            runOnUiThread(() -> {
+                                if (mainWebView != null) {
+                                    String currentUrl = mainWebView.getUrl();
+                                    Log.d(TAG, "Current WebView URL when FCM token arrived: " + currentUrl);
+                                    
+                                    if (currentUrl == null || !currentUrl.contains("fcmtoken=")) {
+                                        Log.d(TAG, "fcmtoken missing in current URL. Reloading main URL with token...");
+                                        loadMainUrl();
+                                    } else {
+                                        Log.d(TAG, "fcmtoken is already present in current URL.");
+                                    }
+                                }
+                            } );
                         }
                     });
         }
