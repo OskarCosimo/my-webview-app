@@ -3,198 +3,194 @@ package com.my.webviewapplication.mobile;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.VideoView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import pl.droidsonroids.gif.GifImageView;
 
 /**
- * Splash Screen Activity
- * Displays animated splash screen on app startup
- * Duration controlled by Config.SPLASH_TIMEOUT_MS
- * Can optionally wait for MainActivity/WebView to load if Config.SPLASH_WAIT_FOR_WEBVIEW is true
+ * Splash Screen Activity.
+ * Displays a video or animated GIF on app startup for Config.SPLASH_TIMEOUT_MS.
  */
 public class SplashActivity extends AppCompatActivity {
 
     private static final String TAG = "SplashActivity";
 
-    // Handler for delayed splash screen transition
     private Handler splashHandler;
-
-    // Flag to track if splash should wait for WebView
-    private boolean shouldWaitForWebView;
-
-    // Timeout for waiting for WebView to load
-    private static final long WEBVIEW_LOAD_TIMEOUT = 30000; // 30 seconds max wait
+    private VideoView videoView;
+    private boolean hasNavigated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d(TAG, "onCreate: Splash screen starting");
-
-        // Check if splash screen is enabled in config
         if (!Config.ENABLE_SPLASH_SCREEN) {
-            Log.d(TAG, "onCreate: Splash screen disabled in config - going directly to MainActivity");
             goToMainActivity();
             return;
         }
 
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splash);
 
-        // Force the status bar to use the specific color defined in Config.java
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        configureStatusBar();
+        applyBackgroundColor();
+
+        if (!setupSplashMedia()) {
+            goToMainActivity();
+            return;
+        }
+
+        splashHandler = new Handler(Looper.getMainLooper());
+        long delayMs = Config.SPLASH_WAIT_FOR_WEBVIEW
+                ? Math.min(Config.SPLASH_TIMEOUT_MS, 1500L)
+                : Math.max(0L, Config.SPLASH_TIMEOUT_MS);
+
+        scheduleMainActivityTransition(delayMs);
+    }
+
+    private void configureStatusBar() {
+        WindowInsetsControllerCompat controller =
+                WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
+        if (controller != null) {
+            controller.setAppearanceLightStatusBars(Config.DARK_STATUS_BAR_TEXT);
+        }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             try {
-                getWindow().setStatusBarColor(android.graphics.Color.parseColor(Config.STATUS_BAR_COLOR));
-            } catch (Exception e) {
+                //noinspection deprecation
+                getWindow().setStatusBarColor(Color.parseColor(Config.STATUS_BAR_COLOR));
+            } catch (IllegalArgumentException e) {
                 Log.e(TAG, "Invalid color format in Config.STATUS_BAR_COLOR", e);
             }
         }
+    }
 
-        // 1. Force the layout to read the background color from Config.java
+    private void applyBackgroundColor() {
         View rootLayout = findViewById(R.id.splash_root_layout);
         if (rootLayout != null) {
             try {
-                rootLayout.setBackgroundColor(android.graphics.Color.parseColor(Config.SPLASH_BG_COLOR));
+                rootLayout.setBackgroundColor(Color.parseColor(Config.SPLASH_BG_COLOR));
             } catch (IllegalArgumentException e) {
                 Log.e(TAG, "Invalid color format in Config.SPLASH_BG_COLOR", e);
             }
         }
+    }
 
-        // 2. Handle the media type (GIF vs Video)
+    private boolean setupSplashMedia() {
         GifImageView gifImageView = findViewById(R.id.splash_gif);
-        VideoView videoView = findViewById(R.id.splash_video);
+        videoView = findViewById(R.id.splash_video);
 
         if ("video".equalsIgnoreCase(Config.SPLASH_MEDIA_TYPE)) {
-            if (gifImageView != null) gifImageView.setVisibility(View.GONE);
-            if (videoView != null) {
-                videoView.setVisibility(View.VISIBLE);
-
-                // Keep the video overlay on top of the layout background
-                videoView.setZOrderMediaOverlay(true);
-
-                // Dynamically fetch the integer Resource ID instead of using string paths to prevent ProGuard/R8 stripping
-                int videoResId = getResources().getIdentifier(Config.SPLASH_VIDEO_NAME, "raw", getPackageName());
-
-                if (videoResId != 0) {
-                    // Build a secure URI using the resolved resource ID
-                    String videoPath = "android.resource://" + getPackageName() + "/" + videoResId;
-                    videoView.setVideoURI(android.net.Uri.parse(videoPath));
-
-                    videoView.setOnPreparedListener(mp -> {
-                        mp.setLooping(Config.SPLASH_VIDEO_LOOP);
-                        Log.d(TAG, "onPrepared: Video ready to play");
-                    });
-
-                    videoView.start();
-                    Log.d(TAG, "onCreate: Splash Video started successfully");
-                } else {
-                    // Fallback behavior if the video file was stripped by the compiler or doesn't exist
-                    Log.e(TAG, "onCreate: CRITICAL ERROR - Video resource not found: " + Config.SPLASH_VIDEO_NAME);
-
-                    // Skip the splash screen timeout and go directly to MainActivity to avoid getting stuck
-                    goToMainActivity();
-                    return;
-                }
-            }
-        } else {
-            if (videoView != null) videoView.setVisibility(View.GONE);
             if (gifImageView != null) {
-                gifImageView.setVisibility(View.VISIBLE);
-
-                // Dynamically fetch the drawable resource ID using the string from Config.java
-                int gifResId = getResources().getIdentifier(Config.SPLASH_GIF_NAME, "drawable", getPackageName());
-
-                if (gifResId != 0) {
-                    gifImageView.setImageResource(gifResId);
-                    Log.d(TAG, "onCreate: Splash GIF loaded");
-                } else {
-                    Log.e(TAG, "onCreate: GIF resource not found: " + Config.SPLASH_GIF_NAME);
-                }
+                gifImageView.setVisibility(View.GONE);
             }
-        }
+            if (videoView == null) {
+                return false;
+            }
 
-        // Check if we should wait for WebView to load
-        shouldWaitForWebView = Config.SPLASH_WAIT_FOR_WEBVIEW;
-        Log.d(TAG, "onCreate: SPLASH_WAIT_FOR_WEBVIEW = " + shouldWaitForWebView);
+            int videoResId = getResources().getIdentifier(
+                    Config.SPLASH_VIDEO_NAME, "raw", getPackageName());
+            if (videoResId == 0) {
+                Log.e(TAG, "Video resource not found: " + Config.SPLASH_VIDEO_NAME);
+                return false;
+            }
 
-        splashHandler = new Handler(Looper.getMainLooper());
+            videoView.setVisibility(View.VISIBLE);
+            videoView.setZOrderMediaOverlay(true);
 
-        if (shouldWaitForWebView) {
-            // Wait for MainActivity to signal that WebView is loaded
-            Log.d(TAG, "onCreate: Waiting for WebView to load (max " + WEBVIEW_LOAD_TIMEOUT + "ms)");
-            waitForWebViewToLoad();
+            String videoPath = "android.resource://" + getPackageName() + "/" + videoResId;
+            videoView.setVideoURI(Uri.parse(videoPath));
+
+            videoView.setOnPreparedListener(mp -> {
+                mp.setLooping(Config.SPLASH_VIDEO_LOOP);
+                Log.d(TAG, "Splash video prepared");
+            });
+
+            videoView.setOnErrorListener((mp, what, extra) -> {
+                Log.e(TAG, "Splash video playback error (what=" + what + ", extra=" + extra + ")");
+                goToMainActivity();
+                return true;
+            });
+
+            videoView.start();
+            return true;
         } else {
-            // Just wait for the configured timeout
-            Log.d(TAG, "onCreate: Waiting for configured timeout: " + Config.SPLASH_TIMEOUT_MS + "ms");
-            scheduleMainActivityTransition(Config.SPLASH_TIMEOUT_MS);
+            if (videoView != null) {
+                videoView.setVisibility(View.GONE);
+            }
+            if (gifImageView == null) {
+                return false;
+            }
+
+            int gifResId = getResources().getIdentifier(
+                    Config.SPLASH_GIF_NAME, "drawable", getPackageName());
+            if (gifResId == 0) {
+                Log.e(TAG, "GIF resource not found: " + Config.SPLASH_GIF_NAME);
+                return false;
+            }
+
+            gifImageView.setVisibility(View.VISIBLE);
+            gifImageView.setImageResource(gifResId);
+            return true;
         }
     }
 
-    /**
-     * Schedule transition to MainActivity after timeout
-     * @param delayMs Delay in milliseconds
-     */
     private void scheduleMainActivityTransition(long delayMs) {
-        splashHandler.postDelayed(() -> {
-            Log.d(TAG, "scheduleMainActivityTransition: Timeout reached - transitioning to MainActivity");
+        if (delayMs <= 0L) {
             goToMainActivity();
-        }, delayMs);
+            return;
+        }
+        splashHandler.postDelayed(this::goToMainActivity, delayMs);
     }
 
-    /**
-     * Wait for MainActivity to load WebView
-     * Will transition after WebView loads or after timeout
-     */
-    private void waitForWebViewToLoad() {
-        // Set a maximum timeout even when waiting for WebView
-        splashHandler.postDelayed(() -> {
-            Log.d(TAG, "waitForWebViewToLoad: WebView load timeout reached - transitioning anyway");
-            goToMainActivity();
-        }, WEBVIEW_LOAD_TIMEOUT);
-
-        Log.d(TAG, "waitForWebViewToLoad: Splash will dismiss when MainActivity signals WebView is loaded");
-    }
-
-    /**
-     * Transition to MainActivity and close splash screen
-     */
     private void goToMainActivity() {
-        Log.d(TAG, "goToMainActivity: Starting MainActivity");
+        if (hasNavigated) {
+            return;
+        }
+        hasNavigated = true;
 
-        // Remove any pending callbacks
         if (splashHandler != null) {
             splashHandler.removeCallbacksAndMessages(null);
         }
 
-        // Start MainActivity
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(intent);
-
-        // Close SplashActivity with animation
         finish();
 
-        // Optional: Add transition animation
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            overrideActivityTransition(
+                    OVERRIDE_TRANSITION_OPEN,
+                    android.R.anim.fade_in,
+                    android.R.anim.fade_out
+            );
+        } else {
+            //noinspection deprecation
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
     }
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "onDestroy: Cleaning up splash screen");
-
-        // Clean up handler
         if (splashHandler != null) {
             splashHandler.removeCallbacksAndMessages(null);
             splashHandler = null;
         }
-
+        if (videoView != null) {
+            videoView.stopPlayback();
+            videoView = null;
+        }
         super.onDestroy();
     }
 }
