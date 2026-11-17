@@ -1,3 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- app/src/main/res/raw/keep.xml (or res/xml/keep.xml) -->
 <resources xmlns:tools="http://schemas.android.com/tools"
-    tools:keep="@raw/*" />
+    tools:keep="@raw/*,@drawable/splash_*" />
