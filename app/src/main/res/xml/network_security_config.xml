@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- app/src/main/res/xml/network_security_config.xml -->
 <network-security-config>
+    <!-- Trust only system CAs in release builds; allow cleartext only for external HTTP URLs handled by secondary browser -->
     <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- Enforce HTTPS-only connections for myetv.tv and all subdomains
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">mydomain.com</domain>
+    </domain-config>
+    <!-- -->
+
+    <!-- Allow user-installed certificates only in debug builds -->
+    <debug-overrides>
         <trust-anchors>
             <certificates src="system" />
             <certificates src="user" />
         </trust-anchors>
-    </base-config>
+    </debug-overrides>
 </network-security-config>
