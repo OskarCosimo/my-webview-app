@@ -1,61 +1,73 @@
 package com.my.webviewapplication.mobile;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
- * Manager class for handling various progress bar styles during WebView page loading
- * Supports multiple visual styles: spinning circle center, corner spinner, linear progress bar
+ * Manager class for handling various progress bar styles during WebView page loading.
+ * Supports center spinner, corner spinner, and top linear progress bar.
  */
 public class ProgressBarManager {
 
     private static final String TAG = "ProgressBarManager";
 
-    // Progress bar style constants
     public enum ProgressBarStyle {
-        SPINNER_CENTER,        // Spinning circle in center of screen
-        SPINNER_CORNER,        // Spinning circle in top-right corner
-        LINEAR_PROGRESS        // Linear progress bar at top of screen
+        SPINNER_CENTER,
+        SPINNER_CORNER,
+        LINEAR_PROGRESS
     }
 
-    private Context context;
-    private FrameLayout parentContainer;
+    private final Context context;
+    @Nullable
+    private final FrameLayout parentContainer;
+    @Nullable
     private View progressView;
+    @Nullable
     private ProgressBar progressBar;
     private ProgressBarStyle style;
-    private int colorRes;
+    @ColorInt
+    private int progressColor;
 
     /**
-     * Constructor for ProgressBarManager
-     * @param context Application context
+     * Constructor for ProgressBarManager.
+     *
+     * @param context         Activity or View context
      * @param parentContainer Parent FrameLayout where progress bar will be added
-     * @param style The visual style of the progress bar
-     * @param colorRes Color resource for the progress bar
+     * @param style           Visual style of the progress bar
+     * @param progressColor   ARGB color integer for the progress indicator
      */
-    public ProgressBarManager(Context context, FrameLayout parentContainer,
-                              ProgressBarStyle style, int colorRes) {
+    public ProgressBarManager(@NonNull Context context,
+                              @Nullable FrameLayout parentContainer,
+                              @NonNull ProgressBarStyle style,
+                              @ColorInt int progressColor) {
         this.context = context;
         this.parentContainer = parentContainer;
         this.style = style;
-        this.colorRes = colorRes;
+        this.progressColor = progressColor;
         Log.d(TAG, "ProgressBarManager initialized with style: " + style.name());
     }
 
     /**
-     * Show the progress indicator
-     * Creates and displays the appropriate progress bar based on configured style
+     * Show the progress indicator if it is not already visible.
      */
     public void show() {
-        if (progressView != null) {
-            Log.w(TAG, "Progress bar already visible");
+        if (parentContainer == null) {
             return;
         }
-
-        Log.d(TAG, "Showing progress bar - Style: " + style.name());
+        if (progressView != null) {
+            return;
+        }
 
         switch (style) {
             case SPINNER_CENTER:
@@ -69,168 +81,127 @@ public class ProgressBarManager {
                 break;
         }
 
-        if (progressView != null && parentContainer != null) {
+        if (progressView != null) {
             parentContainer.addView(progressView);
-            Log.d(TAG, "Progress bar added to parent container");
         }
     }
 
     /**
-     * Hide the progress indicator
-     * Removes the progress bar from view
+     * Hide and detach the progress indicator safely.
      */
     public void hide() {
-        if (progressView != null && parentContainer != null) {
-            Log.d(TAG, "Hiding progress bar - Style: " + style.name());
-            parentContainer.removeView(progressView);
+        if (progressView != null) {
+            if (progressView.getParent() instanceof ViewGroup) {
+                ((ViewGroup) progressView.getParent()).removeView(progressView);
+            } else if (parentContainer != null) {
+                parentContainer.removeView(progressView);
+            }
             progressView = null;
             progressBar = null;
         }
     }
 
     /**
-     * Check if progress bar is currently visible
-     * @return true if progress bar is visible, false otherwise
+     * Check if progress bar is currently visible.
+     *
+     * @return true if progress bar is attached and visible, false otherwise
      */
     public boolean isShowing() {
         return progressView != null && progressView.getVisibility() == View.VISIBLE;
     }
 
-    /**
-     * Create spinning circle progress bar in center of screen
-     * Displays a rotating circle in the middle of the page
-     */
     private void createSpinnerCenter() {
-        progressView = new FrameLayout(context);
-        progressView.setLayoutParams(new FrameLayout.LayoutParams(
+        FrameLayout overlay = new FrameLayout(context);
+        overlay.setLayoutParams(new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT
         ));
+        overlay.setBackgroundColor(Color.parseColor("#80000000"));
 
-        // Semi-transparent background to darken the page
-        progressView.setBackgroundColor(Color.parseColor("#80000000")); // 50% transparent black
-
-        // Create ProgressBar in center
         progressBar = new ProgressBar(context);
         progressBar.setIndeterminate(true);
+        applyTint(progressBar, progressColor);
 
-        // Set color
-        progressBar.getIndeterminateDrawable().setColorFilter(
-                colorRes,
-                android.graphics.PorterDuff.Mode.SRC_IN
-        );
+        float scale = context.getResources().getDisplayMetrics().density;
+        int sizePx = (int) (72 * scale);
 
         FrameLayout.LayoutParams progressParams = new FrameLayout.LayoutParams(
-                100, // Width in dp converted to pixels
-                100, // Height in dp converted to pixels,
-                android.view.Gravity.CENTER
+                sizePx,
+                sizePx,
+                Gravity.CENTER
         );
 
-        // Convert dp to pixels
-        float scale = context.getResources().getDisplayMetrics().density;
-        progressParams.width = (int) (100 * scale);
-        progressParams.height = (int) (100 * scale);
-
         progressBar.setLayoutParams(progressParams);
-        ((FrameLayout) progressView).addView(progressBar);
-
-        Log.d(TAG, "Spinner center created");
+        overlay.addView(progressBar);
+        progressView = overlay;
     }
 
-    /**
-     * Create spinning circle progress bar in top-right corner
-     * Displays a smaller rotating circle in the corner of the page
-     */
     private void createSpinnerCorner() {
-        progressView = new FrameLayout(context);
-        progressView.setLayoutParams(new FrameLayout.LayoutParams(
+        FrameLayout container = new FrameLayout(context);
+        container.setLayoutParams(new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT
         ));
 
-        // Create ProgressBar in corner
         progressBar = new ProgressBar(context);
         progressBar.setIndeterminate(true);
-
-        // Set color
-        progressBar.getIndeterminateDrawable().setColorFilter(
-                colorRes,
-                android.graphics.PorterDuff.Mode.SRC_IN
-        );
+        applyTint(progressBar, progressColor);
 
         float scale = context.getResources().getDisplayMetrics().density;
-        int cornerSize = (int) (50 * scale); // 50dp size
+        int cornerSizePx = (int) (44 * scale);
+        int paddingPx = (int) (16 * scale);
 
         FrameLayout.LayoutParams progressParams = new FrameLayout.LayoutParams(
-                cornerSize,
-                cornerSize
+                cornerSizePx,
+                cornerSizePx,
+                Gravity.TOP | Gravity.END
         );
-
-        // Position in top-right corner with 16dp padding
-        int padding = (int) (16 * scale);
-        progressParams.rightMargin = padding;
-        progressParams.topMargin = padding;
-        progressParams.gravity = android.view.Gravity.TOP | android.view.Gravity.RIGHT;
+        progressParams.setMarginEnd(paddingPx);
+        progressParams.topMargin = paddingPx;
 
         progressBar.setLayoutParams(progressParams);
-        ((FrameLayout) progressView).addView(progressBar);
-
-        Log.d(TAG, "Spinner corner created");
+        container.addView(progressBar);
+        progressView = container;
     }
 
-    /**
-     * Create linear progress bar at top of screen
-     * Displays a horizontal progress bar at the top of the page
-     */
     private void createLinearProgress() {
-        progressView = new FrameLayout(context);
+        float scale = context.getResources().getDisplayMetrics().density;
+        int barHeightPx = Math.max(1, (int) (4 * scale));
+
+        FrameLayout container = new FrameLayout(context);
         FrameLayout.LayoutParams containerParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT
+                barHeightPx,
+                Gravity.TOP
         );
+        container.setLayoutParams(containerParams);
 
-        float scale = context.getResources().getDisplayMetrics().density;
-        int barHeight = (int) (4 * scale); // 4dp height
-
-        containerParams.height = barHeight;
-        containerParams.gravity = android.view.Gravity.TOP;
-        progressView.setLayoutParams(containerParams);
-
-        // Create linear ProgressBar
         progressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
         progressBar.setIndeterminate(true);
-
-        // Set color
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            progressBar.getIndeterminateDrawable().setColorFilter(
-                    colorRes,
-                    android.graphics.PorterDuff.Mode.SRC_IN
-            );
-        } else {
-            progressBar.getProgressDrawable().setColorFilter(
-                    colorRes,
-                    android.graphics.PorterDuff.Mode.SRC_IN
-            );
-        }
+        applyTint(progressBar, progressColor);
 
         FrameLayout.LayoutParams progressParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
-                barHeight
+                barHeightPx
         );
-
         progressBar.setLayoutParams(progressParams);
-        ((FrameLayout) progressView).addView(progressBar);
+        container.addView(progressBar);
+        progressView = container;
+    }
 
-        Log.d(TAG, "Linear progress bar created");
+    private void applyTint(@NonNull ProgressBar bar, @ColorInt int color) {
+        ColorStateList tint = ColorStateList.valueOf(color);
+        bar.setIndeterminateTintList(tint);
+        bar.setProgressTintList(tint);
     }
 
     /**
-     * Update the progress bar style
+     * Update the progress bar style.
+     *
      * @param newStyle The new style to apply
      */
-    public void setStyle(ProgressBarStyle newStyle) {
+    public void setStyle(@NonNull ProgressBarStyle newStyle) {
         if (this.style != newStyle) {
-            Log.d(TAG, "Changing progress bar style from " + this.style.name() + " to " + newStyle.name());
             boolean wasShowing = isShowing();
             hide();
             this.style = newStyle;
@@ -241,25 +212,14 @@ public class ProgressBarManager {
     }
 
     /**
-     * Update the progress bar color
-     * @param newColor The new color resource
+     * Update the progress bar color.
+     *
+     * @param newColor ARGB color integer
      */
-    public void setColor(int newColor) {
-        this.colorRes = newColor;
+    public void setColor(@ColorInt int newColor) {
+        this.progressColor = newColor;
         if (progressBar != null) {
-            Log.d(TAG, "Updating progress bar color");
-            if (progressBar.getIndeterminateDrawable() != null) {
-                progressBar.getIndeterminateDrawable().setColorFilter(
-                        newColor,
-                        android.graphics.PorterDuff.Mode.SRC_IN
-                );
-            }
-            if (progressBar.getProgressDrawable() != null) {
-                progressBar.getProgressDrawable().setColorFilter(
-                        newColor,
-                        android.graphics.PorterDuff.Mode.SRC_IN
-                );
-            }
+            applyTint(progressBar, newColor);
         }
     }
 }
